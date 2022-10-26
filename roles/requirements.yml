@@ -1,0 +1,3 @@
+- src: git@github.com:Sanjarinho49/awx-playbooks.git
+  path: roles
+  scm: git
