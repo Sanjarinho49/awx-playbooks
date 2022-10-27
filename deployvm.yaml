@@ -8,10 +8,10 @@
     - name: Create a virtual machine from a template
       vmware_guest:
         hostname: "{{ vcsa_hostname }}"
-        username: user@user.domain
+        username: "{{ esxi_user }}"
         esxi_hostname: "{{ esxi_hostname }}"
         password: "{{ pwd }}"
-        datacenter: mydc
+        datacenter: "{{ datacenter }}"
         validate_certs: no
         folder: "{{ vcsa_folder }}"
         name: "{{ host_hostname }}"
