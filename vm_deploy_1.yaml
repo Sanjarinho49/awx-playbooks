@@ -69,6 +69,7 @@
 
         customization:
           autologon: yes
+          autoLogonCount: 1
           hostname: "{{ vmname }}"
           password: "{{ vm_password }}"
           domainadmin: "{{ domain_join_account }}"
