@@ -37,5 +37,5 @@
       customization:
         autologon: true
         autologoncount: 1
-      wait_for_ip_address: no
+      wait_for_ip_address: yes
     register: deploy
