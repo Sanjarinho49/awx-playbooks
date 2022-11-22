@@ -17,7 +17,7 @@
   mail:
     host: localhost
     port: 25
-    to: Sanjar Farhad <ahmadsanjar.farhad@gmail.com>
+    to: Sanjarinho <sanjarinho@lab.hom>
     subject: Ansible-report
     body: "{{ windows_vm_hostname }} has been added to AWX Tower Inventory"
   delegate_to: localhost
