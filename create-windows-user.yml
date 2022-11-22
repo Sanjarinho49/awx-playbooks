@@ -4,7 +4,7 @@
   tasks: 
     - name: create windows users
       win_user:
-        name: linda
+        name: Ansible
         password: "@nsible123"
         state: present
         groups: 
