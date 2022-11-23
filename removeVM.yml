@@ -15,8 +15,6 @@
       password: "{{ vcenter_password }}"
       validate_certs: no
       datacenter: "{{ vcenter_datacenter }}"
-      cluster: "{{ vcenter_vm_cluster }}"
-      folder: "{{ vcenter_vm_folder }}"
       name: "{{ vm_Name }}"
       state: absent
 #     delegate_to: localhost
