@@ -4,9 +4,9 @@
   connection: local
   gather_facts: no
   tasks:
-  - set_fact:
-    vm_name: "{{ vm_name }}"
-    datacenter: "{{ vm_datacenter }}"
+#  - set_fact:
+#    vm_name: "{{ vm_name }}"
+#    datacenter: "{{ vm_datacenter }}"
     
   - name: Remove a virtual machine
     vmware_guest:
