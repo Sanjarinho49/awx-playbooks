@@ -19,5 +19,5 @@
       folder: "{{ vcenter_vm_folder }}"
       name: "{{ vm_Name }}"
       state: absent
-     delegate_to: localhost
+#     delegate_to: localhost
     register: facts
