@@ -2,7 +2,7 @@
 - name: AWX Deploy VM OS Host
   hosts: localhost
   connection: local
-  gather_facts: yes
+  gather_facts: no
   tasks:
 
     - name: Create a virtual machine from a template
@@ -38,4 +38,4 @@
         - name: "{{ host_network }}"
         wait_for_ip_address: no
       delegate_to: localhost
-      register: deploy
+      register: facts
