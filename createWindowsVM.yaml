@@ -19,7 +19,7 @@
       customization:
         autologon: true
         autologoncount: 1
-        existing_vm: False
+        existing_vm: True
         dns_servers: "{{ dns_server_list }}"
         dns_suffix: "{{ dns_suffixes }}"
         domain: "{{ domain_name }}"
@@ -37,4 +37,4 @@
         netmask: "255.255.255.0" 
         gateway: "{{ gateway }}"
       wait_for_ip_address: yes
-    register: deploy
+    register: facts
