@@ -1,0 +1,23 @@
+---
+- name: Remove a VM
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+  - set_fact:
+    vm_name: "{{ vm_name }}"
+    datacenter: "{{ vm_datacenter }}"
+    
+  - name: Remove a virtual machine
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      datacenter: "{{ vcenter_datacenter }}"
+      cluster: "{{ vcenter_vm_cluster }}"
+      folder: "{{ vcenter_vm_folder }}"
+      name: "{{ vm_Name }}"
+      state: absent
+     delegate_to: localhost
+    register: facts
