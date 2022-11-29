@@ -1,7 +1,12 @@
 ---
-- name: Create an ISO file
-  community.general.iso_create:
-    src_files:
-      - "{{ source_folder }}"
-    dest_iso: "{{ dest_iso }}"
-    interchange_level: 3
+- name: AWX Deploy VM OS Host
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Create an ISO file
+      community.general.iso_create:
+        src_files:
+          - "{{ source_folder }}"
+        dest_iso: "{{ dest_iso }}"
+        interchange_level: 3
