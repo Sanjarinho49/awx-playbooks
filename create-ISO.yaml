@@ -1,3 +1,4 @@
+---
 - name: Create an ISO file
   community.general.iso_create:
     src_files:
