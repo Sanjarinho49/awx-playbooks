@@ -1,7 +1,10 @@
 ---
-- name: Create an ISO file
+- hosts: localhost
+  tasks:
+  - name: Create an ISO file
     community.general.iso_create:
-    src_files:
-      - "{{ source_folder }}"
-    dest_iso: "{{ dest_iso }}"
-    interchange_level: 3
+      src_files:
+        - "{{ source_folder }}"
+      dest_iso: "{{ dest_iso }}"
+      interchange_level: 3
+      joliet: 3
