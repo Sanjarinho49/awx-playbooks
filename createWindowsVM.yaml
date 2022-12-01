@@ -16,7 +16,9 @@
       name: "{{ vmName }}"
       state: poweredon
       template: "{{ vmTemplate }}"
-      #customization:
+      customization:
+        runonce:
+        - powershell.exe Get-NetConnectionProfile -InterfaceAlias Ethernet0 | Set-NetConnectionProfile -NetworkCategory Private
       #  autologon: true
       #  autologoncount: 1
       #  existing_vm: True
@@ -39,7 +41,7 @@
         type: "Private"
       wait_for_ip_address: no
     register: facts
-    - name: Set up network profile to Private
-        win_shell: "Get-NetConnectionProfile -InterfaceAlias Ethernet0 | Set-NetConnectionProfile -NetworkCategory Private"
-        async: 100 # Using "fire-and-forget" asynchronous execution for this task, otherwise it will always fail and timeout
-        poll: 0
+   # - name: Set up network profile to Private
+   #     win_shell: "Get-NetConnectionProfile -InterfaceAlias Ethernet0 | Set-NetConnectionProfile -NetworkCategory Private"
+   #     async: 100 # Using "fire-and-forget" asynchronous execution for this task, otherwise it will always fail and timeout
+   #     poll: 0
