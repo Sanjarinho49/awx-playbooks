@@ -38,7 +38,6 @@
         #ip: "{{ VMIP }}"
         #netmask: "255.255.255.0" 
         #gateway: "{{ gateway }}"
-        type: "Private"
       wait_for_ip_address: no
     register: facts
    # - name: Set up network profile to Private
