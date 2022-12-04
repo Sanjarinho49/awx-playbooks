@@ -1,25 +1,19 @@
 ---
 - name: Install Telnet and check SQL
   hosts: all
-    
-  tasks:
-  
-  - name: Check SQL Server is Installed
-    win_service:
-     name: MSSQLSERVER
-    register: sqlstatus
-
-  - name: Start SQL Service
-    win_service:
-     name: MSSQLSERVER
-     start_mode: auto
-     state: started
-    when: sqlstatus.exists
-  
-  - name: Ensure user Ansible is present
-  ansible.windows.win_user:
-    name: Ansible
-    password: "{{ ansible_pw }}"
-    state: present
-    groups:
-      - Users
+  tasks:  
+  - name: create windows users
+    win_user:
+      name: Ansible
+      password: "{{ ansible_pw }}"
+      state: present
+      groups: 
+        - Users  
+        
+ # - name: Ensure user Ansible is present
+ ### ansible.windows.win_user:
+   # name: Ansible
+   # password: "{{ ansible_pw }}"
+   # state: present
+   # groups:
+   #   - Users
