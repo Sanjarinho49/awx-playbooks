@@ -1,5 +1,5 @@
 ---
-- name: Install Telnet and check SQL
+- name: Install Roles, Features etc.
   hosts: all
   tasks:  
   - name: create windows users
