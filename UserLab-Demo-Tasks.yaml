@@ -19,7 +19,7 @@
   - name: Ensure user Ansible is present
   ansible.windows.win_user:
     name: Ansible
-    password: {{ ansible_pw }}
+    password: "{{ ansible_pw }}"
     state: present
     groups:
       - Users
