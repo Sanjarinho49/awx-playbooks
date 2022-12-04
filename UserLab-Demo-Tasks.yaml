@@ -31,7 +31,7 @@
 
   - name: Install IIS Web-Server with sub features and management tools
     ansible.windows.win_feature:
-      name: "HTTP Activation,Default Document,Directory Browsing"
+      name: "Web-Dir-Browsing"
       state: present
       include_sub_features: no
       include_management_tools: yes
