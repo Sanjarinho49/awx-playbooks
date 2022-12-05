@@ -62,6 +62,7 @@
       state: domain_controller
       read_only: yes
       site_name: "{{ site_name }}"
+    register: dc_promotion
       
   - name: Reboot after promotion
     ansible.windows.win_reboot:
