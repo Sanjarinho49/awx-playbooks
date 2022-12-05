@@ -60,7 +60,7 @@
       domain_admin_password: "{{ domain_admin_password }}"
       safe_mode_password: "{{ safe_mode_password }}"
       state: domain_controller
-      read_only: yes
+      read_only: no
       site_name: "{{ site_name }}"
     register: dc_promotion
       
