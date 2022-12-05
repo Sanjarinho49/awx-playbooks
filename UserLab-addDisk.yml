@@ -20,16 +20,8 @@
           unit_number: 1
           scsi_type: 'lsilogicsas'
           disk_mode: 'persistent'
-        - size_gb: 24
-          type: thick
-          state: present
-          autoselect_datastore: True
-          scsi_controller: 1
-          unit_number: 1
-          scsi_type: 'lsilogicsas'
-          disk_mode: 'persistent'
-        - size_gb: 36
-          type: thick
+        - size_gb: 4
+          type: thin
           state: present
           autoselect_datastore: True
           scsi_controller: 1
