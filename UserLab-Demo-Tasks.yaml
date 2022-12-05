@@ -41,6 +41,17 @@
   - name: Reboot if installing Web-Server feature requires it
     ansible.windows.win_reboot:
     when: win_feature.reboot_required
+
+  - name: Setup Active Directory Controller
+    win_domain:
+      dns_domain_name: "{{ dns_domain_name }}"
+      safe_mode_password: "{{ safe_mode_password }}"
+    register: active_directory_controllers
+ 
+  - name: reboot once DC created
+    win_reboot:
+    when: active_directory_controllers.reboot_required
+
     
   - name: Promote server as a read only domain controller
     ansible.windows.win_domain_controller:
