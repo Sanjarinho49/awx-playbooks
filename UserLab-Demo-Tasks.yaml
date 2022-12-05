@@ -42,13 +42,16 @@
     ansible.windows.win_reboot:
     when: win_feature.reboot_required
     
-  - name: Ensure a server is a domain controller
+  - name: Promote server as a read only domain controller
     ansible.windows.win_domain_controller:
       dns_domain_name: "{{ dns_domain_name }}"
       domain_admin_user: "{{ domain_admin_user }}"
       domain_admin_password: "{{ domain_admin_password }}"
       safe_mode_password: "{{ safe_mode_password }}"
       state: domain_controller
+      read_only: yes
+      site_name: "{{ site_name }}"
+      
   - name: Reboot after promotion
     ansible.windows.win_reboot:
     when: dc_promotion.reboot_required
