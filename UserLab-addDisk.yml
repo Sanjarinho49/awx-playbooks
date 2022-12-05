@@ -1,0 +1,34 @@
+- name: Add disks to virtual machine using UUID
+  community.vmware.vmware_guest_disk:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    datacenter: "{{ datacenter_name }}"
+    uuid: "{{ vm_uuid }}"
+    disk:
+      - size_gb: 12
+        type: thick
+        state: present
+        autoselect_datastore: True
+        scsi_controller: 1
+        unit_number: 1
+        scsi_type: 'lsilogicsas'
+        disk_mode: 'persistent'
+      - size_gb: 24
+        type: thick
+        state: present
+        autoselect_datastore: True
+        scsi_controller: 1
+        unit_number: 1
+        scsi_type: 'lsilogicsas'
+        disk_mode: 'persistent'
+      - size_gb: 36
+        type: thick
+        state: present
+        autoselect_datastore: True
+        scsi_controller: 1
+        unit_number: 1
+        scsi_type: 'lsilogicsas'
+        disk_mode: 'persistent'
+  delegate_to: localhost
+  register: disk_facts
