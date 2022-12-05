@@ -12,8 +12,8 @@
       datacenter: "{{ datacenter_name }}"
       uuid: "{{ vm_uuid }}"
       disk:
-        - size_gb: 12
-          type: thick
+        - size_gb: 4
+          type: thin
           state: present
           autoselect_datastore: True
           scsi_controller: 1
