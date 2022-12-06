@@ -18,16 +18,16 @@
           type: "{{ vm_disk_type }}"
           datastore: "{{ vm_disk_datastore }}"
           state: present
-          scsi_controller: "{{ vm_disk_scsi_controller }}"
-          unit_number: "{{ vm_disk_scsi_unit }}"
+          scsi_controller: "{{ vm_disk2_scsi_controller }}"
+          unit_number: "{{ vm_disk2_scsi_unit }}"
           scsi_type: "{{ vm_disk_scsi_type }}"
           disk_mode: "{{ vm_disk_mode }}"
         - size_gb: "{{ vm_disk3_gb }}"
           type: "{{ vm_disk_type }}"
           datastore: "{{ vm_disk_datastore }}"
           state: present
-          scsi_controller: "{{ vm_disk_scsi_controller }}"
-          unit_number: "{{ vm_disk_scsi_unit }}"
+          scsi_controller: "{{ vm_disk3_scsi_controller }}"
+          unit_number: "{{ vm_disk3_scsi_unit }}"
           scsi_type: "{{ vm_disk_scsi_type }}"
           disk_mode: "{{ vm_disk_mode }}"
     delegate_to: localhost
