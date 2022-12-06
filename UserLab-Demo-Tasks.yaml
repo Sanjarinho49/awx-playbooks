@@ -11,6 +11,30 @@
         - Users
         - Administrators
         
+  - name: create org users
+    win_user:
+      name: "{{ svc_user }}"
+      password: "{{ svc_pw }}"
+      state: present
+      groups: 
+        - Users
+        
+  - name: create org users
+    win_user:
+      name: "{{ db_user }}"
+      password: "{{ db_pw }}"
+      state: present
+      groups: 
+        - Users
+        
+  - name: create org users
+    win_user:
+      name: "{{ app_user }}"
+      password: "{{ app_pw }}"
+      state: present
+      groups: 
+        - Users
+        
  # - name: Install IIS (Web-Server only)
  #   ansible.windows.win_feature:
  ##     name: Web-Server
