@@ -38,8 +38,8 @@
             gateway: "{{ guestinfo_ic_gateway }}"
             dns: "{{ guestinfo_ic_dns }}"
             domain: "{{ guestinfo_ic_domain }}"
-        name: "instant_cloned_vm"
-        parent_vm: "vm_template"
+        name: "{{ instant_cloned_vm }}"
+        parent_vm: "{{ vm_template }}"
         resource_pool: "{{ resource_pool }}"
       register: instant_cloned_vm
       delegate_to: localhost
