@@ -13,7 +13,7 @@
         folder: "{{ folder }}"
         datastore: "{{ datastore }}"
         datacenter: "{{ datacenter }}"
-#        host: "{{ host }}"
+        host: "{{ host }}"
         name: "{{ Clone_vm }}"
         parent_vm: "{{ parent_vm }}"
         resource_pool: "{{ resource_pool }}"
