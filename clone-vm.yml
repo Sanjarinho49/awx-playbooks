@@ -4,18 +4,42 @@
   connection: local
   gather_facts: yes
   tasks:
-    - name: Instant Clone a VM
+#    - name: Instant Clone a VM
+#      community.vmware.vmware_guest_instant_clone:
+#        hostname: "{{ vcenter_hostname }}"
+#        username: "{{ vcenter_username }}"
+#        password: "{{ vcenter_password }}"
+#        validate_certs: False
+#        folder: "{{ folder }}"
+#        datastore: "{{ datastore }}"
+#        datacenter: "{{ datacenter }}"
+#        host: "{{ host }}"
+#        name: "{{ Clone_vm }}"
+#        parent_vm: "{{ parent_vm }}"
+#        resource_pool: "{{ resource_pool }}"
+#      register: vm_clone
+#      delegate_to: localhost
+    - name: Instant Clone a VM with guest_customization
       community.vmware.vmware_guest_instant_clone:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
+        vm_username: "{{ vm_username }}"
+        vm_password: "{{ vm_password }}"
         validate_certs: False
         folder: "{{ folder }}"
         datastore: "{{ datastore }}"
         datacenter: "{{ datacenter }}"
-        host: "{{ host }}"
-        name: "{{ Clone_vm }}"
-        parent_vm: "{{ parent_vm }}"
+        host: "{{ esxi_host }}"
+        guestinfo_vars:
+          - hostname: "{{ guestinfo.ic.hostname }}"
+            ipaddress: "{{ guestinfo.ic.ipaddress }}"
+            netmask: "{{ guestinfo.ic.netmask }}"
+            gateway: "{{ guestinfo.ic.gateway }}"
+            dns: "{{ guestinfo.ic.dns }}"
+            domain: "{{ guestinfo.ic.domain }}"
+        name: "instant_cloned_vm"
+        parent_vm: "vm_template"
         resource_pool: "{{ resource_pool }}"
-      register: vm_clone
+      register: instant_cloned_vm
       delegate_to: localhost
