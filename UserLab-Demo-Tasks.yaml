@@ -2,10 +2,10 @@
 - name: Install Roles, Features etc.
   hosts: all
   tasks:  
-  - name: create windows users
+  - name: create org users
     win_user:
-      name: Ansible
-      password: "{{ ansible_pw }}"
+      name: "{{ org_user }}"
+      password: "{{ org_pw }}"
       state: present
       groups: 
         - Users
