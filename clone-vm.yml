@@ -4,15 +4,18 @@
   connection: local
   gather_facts: yes
   tasks:
-    - name: Clean VM
-      community.vmware.vmware_guest:
-        validate_certs: false
+    - name: Instant Clone a VM
+      community.vmware.vmware_guest_instant_clone:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
-        name: "cloned_vm_from_vm_cluster"
+        validate_certs: False
+        folder: "{{ folder }}"
+        datastore: "{{ datastore }}"
         datacenter: "{{ datacenter }}"
-        state: absent
-      register: delete_instant_clone_from_vm_when_cluster
-      ignore_errors: true
+        host: "{{ host }}"
+        name: "{{ Clone_vm }}"
+        parent_vm: "{{ parent_vm }}"
+        resource_pool: "{{ resource_pool }}"
+      register: vm_clone
       delegate_to: localhost
