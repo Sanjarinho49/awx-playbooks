@@ -1,21 +1,18 @@
 ---
-- name: Create a VM from a template
+- name: Clone a VM from a template
   hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: yes
   tasks:
-    - name: Instant Clone a VM
-      community.vmware.vmware_guest_instant_clone:
+    - name: Clean VM
+      community.vmware.vmware_guest:
+        validate_certs: false
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
-        validate_certs: False
-        folder: "{{ f0 }}"
-        datastore: "{{ rw_datastore }}"
-        datacenter: "{{ dc1 }}"
-        host: "{{ esxi1 }}"
-        name: "{{ Clone_vm }}"
-        parent_vm: "{{ testvm_1 }}"
-        resource_pool: "{{ test_resource_001 }}"
-      register: vm_clone
+        name: "cloned_vm_from_vm_cluster"
+        datacenter: "{{ datacenter }}"
+        state: absent
+      register: delete_instant_clone_from_vm_when_cluster
+      ignore_errors: true
       delegate_to: localhost
