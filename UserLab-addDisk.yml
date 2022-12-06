@@ -1,8 +1,12 @@
 ---
-- name: Create a VM from a template
+- name: Add disks to virtual machine using UUID
   hosts: localhost
   connection: local
-  gather_facts: yes
+  gather_facts: false
+  collections:
+    - community.vmware
+  pre_tasks:
+    - include_vars: vars.yml
   tasks:
   - name: Add disks to virtual machine using UUID
     community.vmware.vmware_guest_disk:
@@ -12,21 +16,21 @@
       datacenter: "{{ datacenter_name }}"
       uuid: "{{ vm_uuid }}"
       disk:
-        - size_gb: 4
-          type: thin
+        - size_gb: "{{ vm_disk2_gb }}"
+          type: "{{ vm_disk_type }}"
+          datastore: "{{ vm_disk_datastore }}"
           state: present
-          autoselect_datastore: True
-          scsi_controller: 1
-          unit_number: 1
-          scsi_type: 'lsilogicsas'
-          disk_mode: 'persistent'
-        - size_gb: 4
-          type: thin
+          scsi_controller: "{{ vm_disk_scsi_controller }}"
+          unit_number: "{{ vm_disk_scsi_unit }}"
+          scsi_type: "{{ vm_disk_scsi_type }}"
+          disk_mode: "{{ vm_disk_mode }}"
+        - size_gb: "{{ vm_disk3_gb }}"
+          type: "{{ vm_disk_type }}"
+          datastore: "{{ vm_disk_datastore }}"
           state: present
-          autoselect_datastore: True
-          scsi_controller: 1
-          unit_number: 1
-          scsi_type: 'lsilogicsas'
-          disk_mode: 'persistent'
+          scsi_controller: "{{ vm_disk_scsi_controller }}"
+          unit_number: "{{ vm_disk_scsi_unit }}"
+          scsi_type: "{{ vm_disk_scsi_type }}"
+          disk_mode: "{{ vm_disk_mode }}"
     delegate_to: localhost
     register: disk_facts
