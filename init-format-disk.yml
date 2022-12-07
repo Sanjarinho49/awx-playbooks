@@ -14,20 +14,14 @@
   #    msg: "Disk does not exist. ( disk_number = {{ disk_number }} ) "
   #  when: ansible_disks[disk_number] is undefined
 
-  ##- name: initialize disk
-  ##  win_shell: "Initialize-Disk -Number {{ disk_number }}"
-    #when: ansible_disks[disk_number].guid is none
-
-  - name: create partition
-    win_partition:
-      drive_letter: "{{ drive_letter }}"
-      partition_size: -1
-      disk_number: "{{ disk_number }}"
-    #when: ansible_disks[disk_number].guid is none
-
+  - name: initialize disks
+    win_shell: "Initialize-Disk -Number {{ disk_number }}"
+  
+  - name: partition disk
+    win_shell: "New-Partition -DiskNumber {{ disk_number }} -UseMaximumSize -DriveLetter {{ drive_letter }}"
+    
   - name: format disk
-    win_shell: "Format-Volume -DriveLetter {{ drive_letter }} "
-    #when: ansible_disks[disk_number].guid is none
+    win_shell: "Format-Volume -DriveLetter {{ drive_letter }} -NewFileSystemLabel {{ drive_label }} "
 
 #---
 #- name: Clone a VM from a template
