@@ -1,6 +1,6 @@
 ---
 - name: Initiate and Format Disks
-  #hosts: localhost
+  hosts: all
   gather_facts: yes
   collections:
     - community.windows
