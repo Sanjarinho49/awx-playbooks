@@ -4,12 +4,19 @@
   gather_facts: yes
   collections:
     - community.windows
+  with_items:
+    - {disk_number: {{ disk_number1 }}, drive_letter: {{ drive_letter1 }}, drive_label: {{ drive_label1 }} }
+    - {disk_number: {{ disk_number2 }}, drive_letter: {{ drive_letter2 }}, drive_label: {{ drive_label2 }} }
   tasks:
   - name: initialize disks
     win_shell: "Initialize-Disk -Number {{ disk_number }}"
   
   - name: partition disk
-    win_shell: "New-Partition -DiskNumber {{ disk_number }} -UseMaximumSize -DriveLetter {{ drive_letter }}"
+    win_shell: "New-Partition -DiskNumber {{ item.disk_number }} -UseMaximumSize -DriveLetter {{ item.drive_letter }}"
     
   - name: format disk
-    win_shell: "Format-Volume -DriveLetter {{ drive_letter }} -NewFileSystemLabel {{ drive_label }}"
+    win_shell: "Format-Volume -DriveLetter {{ item.drive_letter }} -NewFileSystemLabel {{ item.drive_label }}"
+    #with_items:
+   # - {disk_number: {{ disk_number1 }}, drive_letter: {{ drive_letter1 }}, drive_label: {{ drive_label1 }} }
+    #- {disk_number: {{ disk_number2 }}, drive_letter: {{ drive_letter2 }}, drive_label: {{ drive_label2 }} }
+    
