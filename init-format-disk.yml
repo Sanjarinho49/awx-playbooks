@@ -6,8 +6,8 @@
   collections:
     - community.windows
   tasks:
-  - name: retrieve disc information
-    win_disk_facts:
+  #- name: retrieve disc information
+  #  win_disk_facts:
 
   - name: abort when the disk number does not exist
     fail:
