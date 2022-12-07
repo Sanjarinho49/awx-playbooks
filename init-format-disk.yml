@@ -4,19 +4,15 @@
   gather_facts: yes
   collections:
     - community.windows
-  with_items:
-    - {disk_number: {{ disk_number1 }}, drive_letter: {{ drive_letter1 }}, drive_label: {{ drive_label1 }} }
-    - {disk_number: {{ disk_number2 }}, drive_letter: {{ drive_letter2 }}, drive_label: {{ drive_label2 }} }
   tasks:
   - name: initialize disks
-    win_shell: "Initialize-Disk -Number {{ disk_number }}"
+    win_shell: "Initialize-Disk -Number {{ disk_number1 }}"
+    win_shell: "Initialize-Disk -Number {{ disk_number2 }}"
   
   - name: partition disk
-    win_shell: "New-Partition -DiskNumber {{ item.disk_number }} -UseMaximumSize -DriveLetter {{ item.drive_letter }}"
+    win_shell: "New-Partition -DiskNumber {{ disk_number1 }} -UseMaximumSize -DriveLetter1 {{ drive_letter1 }}"
+    win_shell: "New-Partition -DiskNumber {{ disk_number2 }} -UseMaximumSize -DriveLetter2 {{ drive_letter2 }}"
     
   - name: format disk
-    win_shell: "Format-Volume -DriveLetter {{ item.drive_letter }} -NewFileSystemLabel {{ item.drive_label }}"
-    #with_items:
-   # - {disk_number: {{ disk_number1 }}, drive_letter: {{ drive_letter1 }}, drive_label: {{ drive_label1 }} }
-    #- {disk_number: {{ disk_number2 }}, drive_letter: {{ drive_letter2 }}, drive_label: {{ drive_label2 }} }
-    
+    win_shell: "Format-Volume -DriveLetter {{ drive_letter1 }} -NewFileSystemLabel {{ drive_label1 }}"
+    win_shell: "Format-Volume -DriveLetter {{ drive_letter2 }} -NewFileSystemLabel {{ drive_label2 }}"
