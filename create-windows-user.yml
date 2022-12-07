@@ -1,6 +1,6 @@
 ---
-- name: create a windows user
-  hosts: win
+- name: create windows users
+  hosts: all
   tasks: 
   - name: create org users
     win_user:
