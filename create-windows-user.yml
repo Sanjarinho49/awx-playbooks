@@ -2,10 +2,12 @@
 - name: create a windows user
   hosts: win
   tasks: 
-    - name: create windows users
-      win_user:
-        name: Ansible
-        password: "@nsible123"
-        state: present
-        groups: 
-          - Users
+	- name: create org users
+    win_user:
+      name: "{{ item.name }}"
+      password: "{{ item.pw }}"
+      state: present
+      groups: "{{ item.groups }}"
+    loop:
+      - { name: 'tom', groups: 'Administrators' }
+      - { name: 'jerry', groups: 'Users' }
