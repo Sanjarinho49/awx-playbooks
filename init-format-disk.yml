@@ -7,11 +7,10 @@
   collections:
     - community.windows
   tasks:
-  - name: Create a partition with drive letter D and size 5 GiB
-    community.windows.win_partition:
-      drive_letter: D
-      partition_size: 4 GiB
+  - name: Forcefully initiallize a disk
+    community.windows.win_initialize_disk:
       disk_number: 2
+      force: yes
   #- name: Get disk facts
   #  win_disk_facts:
   #- name: Forcefully initiallize a disk
