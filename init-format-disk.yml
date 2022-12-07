@@ -10,9 +10,9 @@
     win_shell: "Initialize-Disk -Number {{ disk_number2 }}"
   
   - name: partition disk
-    win_shell: "New-Partition -DiskNumber {{ disk_number1 }} -UseMaximumSize -DriveLetter1 {{ drive_letter1 }}"
-    win_shell: "New-Partition -DiskNumber {{ disk_number2 }} -UseMaximumSize -DriveLetter2 {{ drive_letter2 }}"
+    win_shell: "New-Partition -DiskNumber {{ disk_number1 }} -UseMaximumSize -DriveLetter {{ drive_letter1 }}"
+    win_shell: "New-Partition -DiskNumber {{ disk_number2 }} -UseMaximumSize -DriveLetter {{ drive_letter2 }}"
     
   - name: format disk
-    win_shell: "Format-Volume -DriveLetter {{ drive_letter1 }} -NewFileSystemLabel {{ drive_label1 }}"
-    win_shell: "Format-Volume -DriveLetter {{ drive_letter2 }} -NewFileSystemLabel {{ drive_label2 }}"
+    win_shell: "Format-Volume -DriveLetter {{ drive_letter1 }} -NewFileSystemLabe {{ drive_label1 }}"
+    win_shell: "Format-Volume -DriveLetter {{ drive_letter2 }} -NewFileSystemLabe {{ drive_label2 }}"
