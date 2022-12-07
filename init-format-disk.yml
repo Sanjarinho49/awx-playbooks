@@ -6,8 +6,8 @@
   collections:
     - community.windows
   tasks:
-  - name: Get disk facts
-    win_disk_facts:
+  #- name: Get disk facts
+  #  win_disk_facts:
   #- name: Forcefully initiallize a disk
   #  community.windows.win_initialize_disk:
   #    disk_number: 2
