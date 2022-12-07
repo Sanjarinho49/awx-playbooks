@@ -18,11 +18,11 @@
     #when: ansible_disks[disk_number].guid is none
 
   - name: Create Partition using all available space
-    win_partition:
+    community.windows.win_partition:
       drive_letter: "{{ drive_letter }}"
       partition_size: -1
       disk_number: "{{ disk_number }}"
-    when: ansible_disks[disk_number].guid is none
+    #when: ansible_disks[disk_number].guid is none
 
   #- name: Format the partition as NTFS and label it
   #  win_format:
