@@ -6,23 +6,40 @@
   collections:
     - community.windows
   tasks:
-  - name: Get disk facts
-    win_disk_facts:
-  - name: Forcefully initiallize a disk
-    community.windows.win_initialize_disk:
-      disk_number: 2
-      force: yes
-    
-  - name: Initialize Disk
-    win_shell: "Initialize-Disk -Number {{ disk_number }}"
-    when: ansible_disks[disk_number].guid is none
+    - name: Initialize the data disk in the D drive
+    block:
+      - name: Initialize the data disk
+        community.windows.win_initialize_disk:
+          disk_number: 1
+          style: mbr
+      - name: Partition the data disk
+        community.windows.win_partition:
+          drive_letter: D
+          disk_number: 1
+          partition_size: -1
+      - name: Create the data filesystem
+        community.windows.win_format:
+          drive_letter: D
+          file_system: ntfs
+          new_label: data
 
-  - name: Create Partition using all available space
-    community.windows.win_partition:
-      drive_letter: "{{ drive_letter }}"
-      partition_size: -1
-      disk_number: "{{ disk_number }}"
-    when: ansible_disks[disk_number].guid is none
+  #- name: Get disk facts
+  #  win_disk_facts:
+  #- name: Forcefully initiallize a disk
+  #  community.windows.win_initialize_disk:
+  #    disk_number: 2
+  #    force: yes
+    
+  #- name: Initialize Disk
+  #  win_shell: "Initialize-Disk -Number {{ disk_number }}"
+  #  when: ansible_disks[disk_number].guid is none
+
+  #- name: Create Partition using all available space
+  #  community.windows.win_partition:
+  #    drive_letter: "{{ drive_letter }}"
+  #    partition_size: -1
+  #    disk_number: "{{ disk_number }}"
+  #  when: ansible_disks[disk_number].guid is none
 
   #- name: Format the partition as NTFS and label it
   #  win_format:
