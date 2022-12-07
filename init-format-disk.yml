@@ -1,13 +1,15 @@
 ---
-- hosts: all
+- name: Clone a VM from a template
+  hosts: localhost
+  connection: local
+  gather_facts: yes
   tasks:
-
   #- name: Get disk facts
    # win_disk_facts:
-- name: Forcefully initiallize a disk
-  community.windows.win_initialize_disk:
-    disk_number: 2
-    force: yes
+  - name: Forcefully initiallize a disk
+    community.windows.win_initialize_disk:
+      disk_number: 2
+      force: yes
     
  # - name: Initialize Disk
  ##   win_shell: "Initialize-Disk -Number {{ disk_number }}"
