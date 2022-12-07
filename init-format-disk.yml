@@ -1,26 +1,33 @@
 ---
-- name: retrieve disc information
-  win_disk_facts:
+- name: Clone a VM from a template
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  collections:
+    - community.windows
+  tasks:
+  - name: retrieve disc information
+    win_disk_facts:
 
-- name: abort when the disk number does not exist
-  fail:
-    msg: "Disk does not exist. ( disk_number = {{ disk_number }} ) "
-  when: ansible_disks[disk_number] is undefined
+  - name: abort when the disk number does not exist
+    fail:
+      msg: "Disk does not exist. ( disk_number = {{ disk_number }} ) "
+    when: ansible_disks[disk_number] is undefined
 
-- name: initialize disk
-  win_shell: "Initialize-Disk -Number {{ disk_number }}"
-  when: ansible_disks[disk_number].guid is none
+  - name: initialize disk
+    win_shell: "Initialize-Disk -Number {{ disk_number }}"
+    when: ansible_disks[disk_number].guid is none
 
-- name: create partition
-  win_partition:
-    drive_letter: "{{ drive_letter }}"
-    partition_size: -1
-    disk_number: "{{ disk_number }}"
-  when: ansible_disks[disk_number].guid is none
+  - name: create partition
+    win_partition:
+      drive_letter: "{{ drive_letter }}"
+      partition_size: -1
+      disk_number: "{{ disk_number }}"
+    when: ansible_disks[disk_number].guid is none
 
-- name: format disk
-  win_shell: "Format-Volume -DriveLetter {{ drive_letter }} "
-  when: ansible_disks[disk_number].guid is none
+  - name: format disk
+    win_shell: "Format-Volume -DriveLetter {{ drive_letter }} "
+    when: ansible_disks[disk_number].guid is none
 
 #---
 #- name: Clone a VM from a template
