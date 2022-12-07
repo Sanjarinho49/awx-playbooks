@@ -32,7 +32,7 @@
       #  joindomain: "{{ domain_name }}"
       #  orgname: "{{ domain_name }}"
         password: "{{ local_admin_password }}"
-      #  timezone: 110
+        timezone: "Europe/Amsterdam"
       networks:
       - name: "{{ vcenter_network_name }}"
         ip: "{{ VMIP }}"
