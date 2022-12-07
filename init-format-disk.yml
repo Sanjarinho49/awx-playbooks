@@ -7,12 +7,14 @@
   tasks:
   - name: initialize disks
     win_shell: "Initialize-Disk -Number {{ disk_number1 }}"
+  - name: initialize disks
     win_shell: "Initialize-Disk -Number {{ disk_number2 }}"
   
-  - name: partition disk
+  - name: partition disks
     win_shell: "New-Partition -DiskNumber {{ disk_number1 }} -UseMaximumSize -DriveLetter {{ drive_letter1 }}"
+  - name: partition disks
     win_shell: "New-Partition -DiskNumber {{ disk_number2 }} -UseMaximumSize -DriveLetter {{ drive_letter2 }}"
     
-  - name: format disk
+  - name: format disks
     win_shell: "Format-Volume -DriveLetter {{ drive_letter1 }} -NewFileSystemLabe {{ drive_label1 }}"
     win_shell: "Format-Volume -DriveLetter {{ drive_letter2 }} -NewFileSystemLabe {{ drive_label2 }}"
