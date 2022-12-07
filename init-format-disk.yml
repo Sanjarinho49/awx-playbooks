@@ -1,5 +1,8 @@
 ---
-- name: Clone a VM from a template
+- name: Initiate and Format Disks
+  hosts: localhost
+  connection: local
+  gather_facts: yes
   hosts: localhost
   connection: local
   gather_facts: yes
