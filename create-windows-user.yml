@@ -2,12 +2,12 @@
 - name: create a windows user
   hosts: win
   tasks: 
-	- name: create org users
+  - name: create org users
     win_user:
       name: "{{ item.name }}"
       password: "{{ item.pw }}"
       state: present
       groups: "{{ item.groups }}"
     loop:
-      - { name: 'tom', groups: 'Administrators' }
-      - { name: 'jerry', groups: 'Users' }
+      - { name: 'tom', pw: 'p@ssw0rd', groups: 'Administrators' }
+      - { name: 'jerry', pw: 'p@ssw0rd', groups: 'Users' }
