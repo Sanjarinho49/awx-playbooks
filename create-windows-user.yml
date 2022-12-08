@@ -10,8 +10,6 @@
       state: present
       groups: "{{ item.groups }}"
     loop:
-      #- { name: 'tom', pw: 'p@ssw0rd', groups: 'Administrators' }
-      #- { name: 'jerry', pw: 'p@ssw0rd', groups: 'Users' }
       - name: {{ org_user_name }}
         pw: {{ org_user_pw }}
         pw_exp: {{ org_user_pw_exp }}
