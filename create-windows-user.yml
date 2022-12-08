@@ -6,7 +6,7 @@
     win_user:
       name: "{{ item.name }}"
       password: "{{ item.pw }}"
-      password_expired: "{{ pw_exp }}"
+      password_expired: "{{ item.pw_exp }}"
       state: present
       groups: "{{ item.groups }}"
     loop:
