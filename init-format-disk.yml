@@ -17,4 +17,5 @@
     
   - name: format disks
     win_shell: "Format-Volume -DriveLetter {{ drive_letter1 }} -NewFileSystemLabe {{ drive_label1 }}"
+  - name: format disks
     win_shell: "Format-Volume -DriveLetter {{ drive_letter2 }} -NewFileSystemLabe {{ drive_label2 }}"
