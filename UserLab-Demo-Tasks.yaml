@@ -2,51 +2,6 @@
 - name: Install Roles, Features etc.
   hosts: all
   tasks:  
-  - name: create org users
-    win_user:
-      name: "{{ org_user }}"
-      password: "{{ org_pw }}"
-      state: present
-      groups: 
-        - Users
-        - Administrators
-        
-  - name: create org users
-    win_user:
-      name: "{{ svc_user }}"
-      password: "{{ svc_pw }}"
-      state: present
-      groups: 
-        - Users
-        
-  - name: create org users
-    win_user:
-      name: "{{ db_user }}"
-      password: "{{ db_pw }}"
-      state: present
-      groups: 
-        - Users
-        
-  - name: create org users
-    win_user:
-      name: "{{ app_user }}"
-      password: "{{ app_pw }}"
-      state: present
-      groups: 
-        - Users
-        
- # - name: Install IIS (Web-Server only)
- #   ansible.windows.win_feature:
- ##     name: Web-Server
-  #    state: present
-
- # - name: Install IIS (Web-Server and Web-Common-Http)
- #   ansible.windows.win_feature:
- #     name:
- #     - Web-Server
-  #    - Web-Common-Http
- #     state: present
-
   - name: Install NET-Framework-Core from file
     ansible.windows.win_feature:
       name: NET-Framework-Core
@@ -56,7 +11,6 @@
   - name: Install IIS Web-Server with sub features and management tools
     ansible.windows.win_feature:
       name: "NET-Framework-Features,NET-Framework-Core,NET-HTTP-Activation,NET-Framework-45-Features,NET-Framework-45-Core,NET-Framework-45-ASPNET,NET-WCF-Services45,NET-WCF-HTTP-Activation45,Server-Media-Foundation,Windows-Identity-Foundation,Windows-Server-Backup,Web-Common-Http,Web-Default-Doc,Web-Dir-Browsing,Web-Http-Errors,Web-Static-Content,Web-Http-Redirect,Web-Health,Web-Http-Logging,Web-Log-Libraries,Web-Request-Monitor,Web-Http-Tracing,Web-Performance,Web-Stat-Compression,Web-Dyn-Compression,Web-Security,Web-Filtering,Web-Basic-Auth,Web-CertProvider,Web-Client-Auth,Web-Digest-Auth,Web-Cert-Auth,Web-IP-Security,	Web-Url-Auth,Web-Windows-Auth,Web-App-Dev,Web-Net-Ext,Web-Net-Ext45,Web-AppInit,Web-ASP,Web-Asp-Net,Web-Asp-Net45,Web-ISAPI-Ext,Web-ISAPI-Filter,Web-Includes,Web-WebSockets,Web-Mgmt-Tools,Web-Scripting-Tools,Windows-Server-Backup,PowerShellRoot,PowerShell,PowerShell-V2"
-      #PowerShell_ise is not listed
       state: present
       include_sub_features: no
       include_management_tools: yes
