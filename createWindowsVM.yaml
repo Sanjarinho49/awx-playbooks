@@ -39,8 +39,11 @@
         netmask: "255.255.255.0" 
         gateway: "{{ gateway }}"
       wait_for_ip_address: yes
-    register: facts
+    register: newvm
    # - name: Set up network profile to Private
    #     win_shell: "Get-NetConnectionProfile -InterfaceAlias Ethernet0 | Set-NetConnectionProfile -NetworkCategory Private"
    #     async: 100 # Using "fire-and-forget" asynchronous execution for this task, otherwise it will always fail and timeout
    #     poll: 0
+    - set_stats:
+        data:
+          demovmuuid: "{{ newvm.instance.hw_product_uuid }}"
