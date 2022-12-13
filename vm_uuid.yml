@@ -7,7 +7,7 @@
   tasks:
     - name: Get VM UUID
       #vmware_guest_info:
-      community.vmware.vmware_guest:
+      community.vmware.vmware_guest_info:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
