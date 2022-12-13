@@ -34,6 +34,7 @@
         netmask: "255.255.255.0" 
         gateway: "{{ gateway }}"
       wait_for_ip_address: yes
+      wait_for_customization: yes
     register: newvm
     
   - set_stats:
