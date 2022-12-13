@@ -19,6 +19,7 @@
       customization:
         runonce:
         - powershell.exe Get-NetConnectionProfile -InterfaceAlias Ethernet0 | Set-NetConnectionProfile -NetworkCategory Private
+        - powershell.exe winrm set winrm/config/service/auth '@{Basic="true"}'
         autologon: true
         autologoncount: 1
         existing_vm: True
