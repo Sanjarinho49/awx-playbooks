@@ -2,5 +2,4 @@
 collections:
   - name: community.general  
   - name: community.vmware
-  - name: community.vmware.vmware_tools
   - name: community.windows
