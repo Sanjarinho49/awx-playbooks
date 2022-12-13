@@ -12,7 +12,8 @@
       username: "{{ vcenter_username }}"
       password: "{{ vcenter_password }}"
       datacenter: "{{ datacenter_name }}"
-      uuid: "{{ vm_uuid }}"
+      #uuid: "{{ vm_uuid }}"
+      uuid: demovmuuid
       disk:
         - size_gb: "{{ vm_disk2_gb }}"
           type: "{{ vm_disk_type }}"
