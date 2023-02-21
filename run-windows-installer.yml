@@ -1,0 +1,48 @@
+---
+- name: Run application installer on Windows
+  hosts: all
+  gather_facts: no
+  become: yes
+  vars:
+    installer_url: "http://example.com/app-installer.exe"
+    installer_path: "C:\\Temp\\app-installer.exe"
+    installer_args: "/silent"
+    restart_timeout: 300
+    username: "installer"
+    password: "password123"
+  tasks:
+  - name: Download application installer
+    win_get_url:
+      url: "{{ installer_url }}"
+      dest: "{{ installer_path }}"
+  - name: Run first stage of installer
+    win_package:
+      path: "{{ installer_path }}"
+      arguments: "{{ installer_args }}"
+  - name: Wait for Windows restart
+    wait_for:
+      host: "{{ inventory_hostname }}"
+      port: 22
+      timeout: "{{ restart_timeout }}"
+      state: started
+  - name: Run second stage of installer
+    win_shell: |
+      Start-Sleep -s 60
+      $secpasswd = ConvertTo-SecureString "{{ password }}" -AsPlainText -Force
+      $cred = New-Object System.Management.Automation.PSCredential ("{{ username }}", $secpasswd)
+      Start-Process "{{ installer_path }}" -ArgumentList "{{ installer_args }}" -Credential $cred -Wait
+  - name: Wait for Windows restart
+    wait_for:
+      host: "{{ inventory_hostname }}"
+      port: 22
+      timeout: "{{ restart_timeout }}"
+      state: started
+  - name: Run third stage of installer
+    win_shell: |
+      Start-Sleep -s 60
+      $secpasswd = ConvertTo-SecureString "{{ password }}" -AsPlainText -Force
+      $cred = New-Object System.Management.Automation.PSCredential ("{{ username }}", $secpasswd)
+      Start-Process "{{ installer_path }}" -ArgumentList "{{ installer_args }}" -Credential $cred -Wait
+  - name: Restart Windows one last time
+    win_reboot:
+      reboot_timeout: "{{ restart_timeout }}"
