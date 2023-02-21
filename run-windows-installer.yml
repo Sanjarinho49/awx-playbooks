@@ -3,12 +3,15 @@
   hosts: all
   gather_facts: no
   become: yes
+  become_method: runas
+  become_user: Administrator
   vars:
     installer_path: "{{ installer_path }}"
     installer_args: "{{ installer_args }}"
     restart_timeout: 300
     username: "{{ username }}"
     password: "{{ password }}"
+    ansible_become_password: "{{ become_pass }}"
   tasks:
     - name: Run first stage of installer
       win_package:
