@@ -4,17 +4,13 @@
   gather_facts: no
   become: yes
   vars:
-    installer_url: "http://example.com/app-installer.exe"
-    installer_path: "C:\\Temp\\app-installer.exe"
-    installer_args: "/silent"
+    #installer_url: "http://example.com/app-installer.exe"
+    installer_path: "F:\Server_Installer\setup.exe"
+    installer_args: "/upgrade"
     restart_timeout: 300
-    username: "installer"
-    password: "password123"
+    username: '{{ username }}'
+    password: '{{ password }}'
   tasks:
-  - name: Download application installer
-    win_get_url:
-      url: "{{ installer_url }}"
-      dest: "{{ installer_path }}"
   - name: Run first stage of installer
     win_package:
       path: "{{ installer_path }}"
