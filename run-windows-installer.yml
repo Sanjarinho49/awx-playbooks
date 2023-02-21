@@ -5,11 +5,11 @@
   become: yes
   vars:
     #installer_url: "http://example.com/app-installer.exe"
-    installer_path: "F:\Server_Installer\setup.exe"
-    installer_args: "/upgrade"
+    installer_path: "{{ installer_path }}"
+    installer_args: "{{ installer_args }}"
     restart_timeout: 300
-    username: '{{ username }}'
-    password: '{{ password }}'
+    username: "{{ username }}"
+    password: "{{ password }}"
   tasks:
   - name: Run first stage of installer
     win_package:
