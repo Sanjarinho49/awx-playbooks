@@ -20,7 +20,7 @@
     - name: Wait for Windows restart
       wait_for:
         host: "{{ inventory_hostname }}"
-        port: 22
+        port: 5985
         timeout: "{{ restart_timeout }}"
         state: started
     - name: Run second stage of installer
@@ -32,7 +32,7 @@
     - name: Wait for Windows restart
       wait_for:
         host: "{{ inventory_hostname }}"
-        port: 22
+        port: 5985
         timeout: "{{ restart_timeout }}"
         state: started
     - name: Run third stage of installer
